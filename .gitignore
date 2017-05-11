@@ -1,0 +1,17 @@
+# IntelliJ IDEA:
+.idea
+*.iml
+
+# Gradle:
+.gradle
+local.properties
+
+# Outputs:
+build
+
+# Other:
+captures
+.externalNativeBuild
+
+# OS files:
+.DS_Store
