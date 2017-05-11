@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
@@ -7,7 +7,6 @@ android {
 	buildToolsVersion "25.0.3"
 
 	defaultConfig {
-		applicationId "it.czerwinski.android.delegates.sharedproperties.demo"
 		minSdkVersion 14
 		targetSdkVersion 25
 		versionCode androidVersionCode.toInteger()
@@ -31,7 +30,6 @@ android {
 
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
-	compile project(':delegates-shared-properties')
 
 	compile 'com.android.support:appcompat-v7:25.3.1'
 
