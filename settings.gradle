@@ -1,1 +1,1 @@
-include ':demo', ':delegates-shared-properties'
+include ':demo', ':delegates-shared-preferences'

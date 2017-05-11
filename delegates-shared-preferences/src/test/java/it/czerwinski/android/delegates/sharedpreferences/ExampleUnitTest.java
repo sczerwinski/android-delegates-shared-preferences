@@ -1,4 +1,4 @@
-package it.czerwinski.android.delegates.sharedproperties;
+package it.czerwinski.android.delegates.sharedpreferences;
 
 import org.junit.Test;
 

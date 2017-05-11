@@ -1,4 +1,4 @@
-package it.czerwinski.android.delegates.sharedproperties.demo;
+package it.czerwinski.android.delegates.sharedpreferences.demo;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -15,6 +15,6 @@ public class ExampleInstrumentedTest {
     @Test
     public void useAppContext() throws Exception {
         Context appContext = InstrumentationRegistry.getTargetContext();
-        assertEquals("it.czerwinski.android.delegates.sharedproperties.demo", appContext.getPackageName());
+        assertEquals("it.czerwinski.android.delegates.sharedpreferences.demo", appContext.getPackageName());
     }
 }
