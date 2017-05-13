@@ -26,3 +26,15 @@ fun Context.intSharedPreference(key: String, defaultValue: Int) =
 				this, key, defaultValue,
 				SharedPreferences::getInt,
 				SharedPreferences.Editor::putInt)
+
+fun Context.longSharedPreference(key: String) =
+		NullableSharedPreferenceDelegate<Long>(
+				this, key, 0L,
+				SharedPreferences::getLong,
+				SharedPreferences.Editor::putLong)
+
+fun Context.longSharedPreference(key: String, defaultValue: Long) =
+		SharedPreferenceDelegate<Long>(
+				this, key, defaultValue,
+				SharedPreferences::getLong,
+				SharedPreferences.Editor::putLong)
