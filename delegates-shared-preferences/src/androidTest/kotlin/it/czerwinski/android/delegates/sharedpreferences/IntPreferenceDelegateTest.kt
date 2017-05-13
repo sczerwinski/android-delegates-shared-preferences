@@ -27,7 +27,7 @@ class IntPreferenceDelegateTest {
 		// given:
 		val context = InstrumentationRegistry.getTargetContext()
 		// when:
-		val testPreference by context.intPreferenceDelegate("TEST_DELEGATE_KEY")
+		val testPreference by context.intSharedPreference("TEST_DELEGATE_KEY")
 		// then:
 		assertEquals(null, testPreference)
 	}
@@ -38,7 +38,7 @@ class IntPreferenceDelegateTest {
 		// given:
 		val context = InstrumentationRegistry.getTargetContext()
 		// when:
-		val testPreference by context.intPreferenceDelegate("TEST_DELEGATE_KEY", 5)
+		val testPreference by context.intSharedPreference("TEST_DELEGATE_KEY", 5)
 		// then:
 		assertEquals(5, testPreference)
 	}
@@ -49,7 +49,7 @@ class IntPreferenceDelegateTest {
 		// given:
 		val context = InstrumentationRegistry.getTargetContext()
 		// when:
-		val testPreference by context.intPreferenceDelegate("TEST_DELEGATE_KEY", 0)
+		val testPreference by context.intSharedPreference("TEST_DELEGATE_KEY", 0)
 		// then compiles:
 		val value: Int = testPreference
 	}
@@ -64,7 +64,7 @@ class IntPreferenceDelegateTest {
 				.putInt("TEST_DELEGATE_KEY", 17)
 				.apply()
 		// when:
-		val testPreference by context.intPreferenceDelegate("TEST_DELEGATE_KEY")
+		val testPreference by context.intSharedPreference("TEST_DELEGATE_KEY")
 		// then:
 		assertEquals(17, testPreference)
 	}
@@ -79,7 +79,7 @@ class IntPreferenceDelegateTest {
 				.putInt("TEST_DELEGATE_KEY", 23)
 				.apply()
 		// when:
-		val testPreference by context.intPreferenceDelegate("TEST_DELEGATE_KEY", 0)
+		val testPreference by context.intSharedPreference("TEST_DELEGATE_KEY", 0)
 		// then:
 		assertEquals(23, testPreference)
 	}
@@ -90,7 +90,7 @@ class IntPreferenceDelegateTest {
 		// given:
 		val context = InstrumentationRegistry.getTargetContext()
 		val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-		var testPreference by context.intPreferenceDelegate("TEST_DELEGATE_KEY")
+		var testPreference by context.intSharedPreference("TEST_DELEGATE_KEY")
 		// when:
 		testPreference = 13
 		// then:
@@ -106,7 +106,7 @@ class IntPreferenceDelegateTest {
 		preferences.edit()
 				.putInt("TEST_DELEGATE_KEY", 31)
 				.apply()
-		var testPreference by context.intPreferenceDelegate("TEST_DELEGATE_KEY")
+		var testPreference by context.intSharedPreference("TEST_DELEGATE_KEY")
 		// when:
 		testPreference = null
 		// then:
@@ -119,7 +119,7 @@ class IntPreferenceDelegateTest {
 		// given:
 		val context = InstrumentationRegistry.getTargetContext()
 		val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-		var testPreference by context.intPreferenceDelegate("TEST_DELEGATE_KEY", 0)
+		var testPreference by context.intSharedPreference("TEST_DELEGATE_KEY", 0)
 		// when:
 		testPreference = 7
 		// then:
@@ -131,8 +131,8 @@ class IntPreferenceDelegateTest {
 	fun twoDelegatesShouldHaveTheSameValue() {
 		// given:
 		val context = InstrumentationRegistry.getTargetContext()
-		var testPreference1 by context.intPreferenceDelegate("TEST_DELEGATE_KEY")
-		val testPreference2 by context.intPreferenceDelegate("TEST_DELEGATE_KEY")
+		var testPreference1 by context.intSharedPreference("TEST_DELEGATE_KEY")
+		val testPreference2 by context.intSharedPreference("TEST_DELEGATE_KEY")
 		// when:
 		testPreference1 = 37
 		// then:

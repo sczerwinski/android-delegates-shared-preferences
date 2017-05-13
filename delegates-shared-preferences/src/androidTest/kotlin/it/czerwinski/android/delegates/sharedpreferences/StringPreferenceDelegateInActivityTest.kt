@@ -65,7 +65,7 @@ class StringPreferenceDelegateInActivityTest {
 	fun valueWrittenToActivityFieldShouldBeReadFromLocalDelegate() {
 		// given:
 		val delegateActivity = activityRule.activity
-		val testPreference by delegateActivity.stringPreferenceDelegate("TEST_DELEGATE_KEY", "Default value")
+		val testPreference by delegateActivity.stringSharedPreference("TEST_DELEGATE_KEY", "Default value")
 		// when:
 		delegateActivity.writablePreference = "Some value"
 		// then:
@@ -77,7 +77,7 @@ class StringPreferenceDelegateInActivityTest {
 	fun valueWrittenToLocalDelegateShouldBeReadFromActivityField() {
 		// given:
 		val delegateActivity = activityRule.activity
-		var testPreference by delegateActivity.stringPreferenceDelegate("TEST_DELEGATE_KEY", "Default value")
+		var testPreference by delegateActivity.stringSharedPreference("TEST_DELEGATE_KEY", "Default value")
 		// when:
 		testPreference = "Another value"
 		// then:

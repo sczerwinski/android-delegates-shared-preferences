@@ -65,7 +65,7 @@ class IntPreferenceDelegateInActivityTest {
 	fun valueWrittenToActivityFieldShouldBeReadFromLocalDelegate() {
 		// given:
 		val delegateActivity = activityRule.activity
-		val testPreference by delegateActivity.intPreferenceDelegate("TEST_DELEGATE_KEY", 117)
+		val testPreference by delegateActivity.intSharedPreference("TEST_DELEGATE_KEY", 117)
 		// when:
 		delegateActivity.writablePreference = 256
 		// then:
@@ -77,7 +77,7 @@ class IntPreferenceDelegateInActivityTest {
 	fun valueWrittenToLocalDelegateShouldBeReadFromActivityField() {
 		// given:
 		val delegateActivity = activityRule.activity
-		var testPreference by delegateActivity.intPreferenceDelegate("TEST_DELEGATE_KEY", 3)
+		var testPreference by delegateActivity.intSharedPreference("TEST_DELEGATE_KEY", 3)
 		// when:
 		testPreference = 4096
 		// then:
