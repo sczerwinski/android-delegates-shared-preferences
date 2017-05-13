@@ -11,7 +11,7 @@ import org.junit.Assert.*
 import org.junit.Before
 
 @RunWith(AndroidJUnit4::class)
-class StringPreferenceDelegateTest {
+class StringSetPreferenceDelegateTest {
 
 	@Before
 	@Throws(Exception::class)
@@ -27,7 +27,7 @@ class StringPreferenceDelegateTest {
 		// given:
 		val context = InstrumentationRegistry.getTargetContext()
 		// when:
-		val testPreference by context.stringSharedPreference("TEST_DELEGATE_KEY")
+		val testPreference by context.stringSetSharedPreference("TEST_DELEGATE_KEY")
 		// then:
 		assertNull(testPreference)
 	}
@@ -38,20 +38,20 @@ class StringPreferenceDelegateTest {
 		// given:
 		val context = InstrumentationRegistry.getTargetContext()
 		// when:
-		val testPreference by context.stringSharedPreference("TEST_DELEGATE_KEY", "Default value")
+		val testPreference by context.stringSetSharedPreference("TEST_DELEGATE_KEY", setOf("abc", "def"))
 		// then:
-		assertEquals("Default value", testPreference)
+		assertEquals(setOf("abc", "def"), testPreference)
 	}
 
 	@Test
 	@Throws(Exception::class)
-	fun delegateWithDefaultValueShouldReturnNonNullString() {
+	fun delegateWithDefaultValueShouldReturnNonNullStringSet() {
 		// given:
 		val context = InstrumentationRegistry.getTargetContext()
 		// when:
-		val testPreference by context.stringSharedPreference("TEST_DELEGATE_KEY", "Default value")
+		val testPreference by context.stringSetSharedPreference("TEST_DELEGATE_KEY", setOf("abc", "def"))
 		// then compiles:
-		val text: String = testPreference
+		val set: Set<String> = testPreference
 	}
 
 	@Test
@@ -61,12 +61,12 @@ class StringPreferenceDelegateTest {
 		val context = InstrumentationRegistry.getTargetContext()
 		val preferences = PreferenceManager.getDefaultSharedPreferences(context)
 		preferences.edit()
-				.putString("TEST_DELEGATE_KEY", "Test value")
+				.putStringSet("TEST_DELEGATE_KEY", setOf("xyz", "abc"))
 				.apply()
 		// when:
-		val testPreference by context.stringSharedPreference("TEST_DELEGATE_KEY")
+		val testPreference by context.stringSetSharedPreference("TEST_DELEGATE_KEY")
 		// then:
-		assertEquals("Test value", testPreference)
+		assertEquals(setOf("xyz", "abc"), testPreference)
 	}
 
 	@Test
@@ -76,12 +76,12 @@ class StringPreferenceDelegateTest {
 		val context = InstrumentationRegistry.getTargetContext()
 		val preferences = PreferenceManager.getDefaultSharedPreferences(context)
 		preferences.edit()
-				.putString("TEST_DELEGATE_KEY", "Test value")
+				.putStringSet("TEST_DELEGATE_KEY", setOf("xyz", "abc"))
 				.apply()
 		// when:
-		val testPreference by context.stringSharedPreference("TEST_DELEGATE_KEY", "Default value")
+		val testPreference by context.stringSetSharedPreference("TEST_DELEGATE_KEY", emptySet())
 		// then:
-		assertEquals("Test value", testPreference)
+		assertEquals(setOf("xyz", "abc"), testPreference)
 	}
 
 	@Test
@@ -90,11 +90,11 @@ class StringPreferenceDelegateTest {
 		// given:
 		val context = InstrumentationRegistry.getTargetContext()
 		val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-		var testPreference by context.stringSharedPreference("TEST_DELEGATE_KEY")
+		var testPreference by context.stringSetSharedPreference("TEST_DELEGATE_KEY")
 		// when:
-		testPreference = "New value"
+		testPreference = setOf("xyz", "abc")
 		// then:
-		assertEquals("New value", preferences.getString("TEST_DELEGATE_KEY", null))
+		assertEquals(setOf("xyz", "abc"), preferences.getStringSet("TEST_DELEGATE_KEY", null))
 	}
 
 	@Test
@@ -104,9 +104,9 @@ class StringPreferenceDelegateTest {
 		val context = InstrumentationRegistry.getTargetContext()
 		val preferences = PreferenceManager.getDefaultSharedPreferences(context)
 		preferences.edit()
-				.putString("TEST_DELEGATE_KEY", "Initial value")
+				.putStringSet("TEST_DELEGATE_KEY", emptySet())
 				.apply()
-		var testPreference by context.stringSharedPreference("TEST_DELEGATE_KEY")
+		var testPreference by context.stringSetSharedPreference("TEST_DELEGATE_KEY")
 		// when:
 		testPreference = null
 		// then:
@@ -119,11 +119,11 @@ class StringPreferenceDelegateTest {
 		// given:
 		val context = InstrumentationRegistry.getTargetContext()
 		val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-		var testPreference by context.stringSharedPreference("TEST_DELEGATE_KEY", "Default value")
+		var testPreference by context.stringSetSharedPreference("TEST_DELEGATE_KEY", setOf("abc", "def"))
 		// when:
-		testPreference = "New value"
+		testPreference = setOf("xyz", "abc")
 		// then:
-		assertEquals("New value", preferences.getString("TEST_DELEGATE_KEY", null))
+		assertEquals(setOf("xyz", "abc"), preferences.getStringSet("TEST_DELEGATE_KEY", null))
 	}
 
 	@Test
@@ -131,11 +131,11 @@ class StringPreferenceDelegateTest {
 	fun twoDelegatesShouldHaveTheSameValue() {
 		// given:
 		val context = InstrumentationRegistry.getTargetContext()
-		var testPreference1 by context.stringSharedPreference("TEST_DELEGATE_KEY")
-		val testPreference2 by context.stringSharedPreference("TEST_DELEGATE_KEY")
+		var testPreference1 by context.stringSetSharedPreference("TEST_DELEGATE_KEY")
+		val testPreference2 by context.stringSetSharedPreference("TEST_DELEGATE_KEY")
 		// when:
-		testPreference1 = "Some value"
+		testPreference1 = setOf("xyz", "abc")
 		// then:
-		assertEquals("Some value", testPreference2)
+		assertEquals(setOf("xyz", "abc"), testPreference2)
 	}
 }

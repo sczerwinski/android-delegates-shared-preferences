@@ -12,11 +12,11 @@ import org.junit.Before
 import org.junit.Rule
 
 @RunWith(AndroidJUnit4::class)
-class IntPreferenceDelegateInActivityTest {
+class StringSetPreferenceDelegateInActivityTest {
 
 	@Rule
 	@JvmField
-	var activityRule = ActivityTestRule<IntPreferenceDelegateActivity>(IntPreferenceDelegateActivity::class.java)
+	var activityRule = ActivityTestRule<StringSetPreferenceDelegateActivity>(StringSetPreferenceDelegateActivity::class.java)
 
 	@Before
 	@Throws(Exception::class)
@@ -45,7 +45,7 @@ class IntPreferenceDelegateInActivityTest {
 		// when:
 		val delegateValue = delegateActivity.readOnlyPreferenceWithDefaultValue
 		// then:
-		assertEquals(1024, delegateValue)
+		assertEquals(setOf("abc", "def"), delegateValue)
 	}
 
 	@Test
@@ -55,9 +55,9 @@ class IntPreferenceDelegateInActivityTest {
 		val delegateActivity = activityRule.activity
 		val preferences = PreferenceManager.getDefaultSharedPreferences(delegateActivity)
 		// when:
-		delegateActivity.writablePreference = 512
+		delegateActivity.writablePreference = setOf("xyz", "mno")
 		// then:
-		assertEquals(512, preferences.getInt("TEST_DELEGATE_KEY", 0))
+		assertEquals(setOf("xyz", "mno"), preferences.getStringSet("TEST_DELEGATE_KEY", null))
 	}
 
 	@Test
@@ -65,11 +65,11 @@ class IntPreferenceDelegateInActivityTest {
 	fun valueWrittenToActivityFieldShouldBeReadFromLocalDelegate() {
 		// given:
 		val delegateActivity = activityRule.activity
-		val testPreference by delegateActivity.intSharedPreference("TEST_DELEGATE_KEY", 117)
+		val testPreference by delegateActivity.stringSetSharedPreference("TEST_DELEGATE_KEY", emptySet())
 		// when:
-		delegateActivity.writablePreference = 256
+		delegateActivity.writablePreference = setOf("xyz", "mno")
 		// then:
-		assertEquals(256, testPreference)
+		assertEquals(setOf("xyz", "mno"), testPreference)
 	}
 
 	@Test
@@ -77,10 +77,10 @@ class IntPreferenceDelegateInActivityTest {
 	fun valueWrittenToLocalDelegateShouldBeReadFromActivityField() {
 		// given:
 		val delegateActivity = activityRule.activity
-		var testPreference by delegateActivity.intSharedPreference("TEST_DELEGATE_KEY", 3)
+		var testPreference by delegateActivity.stringSetSharedPreference("TEST_DELEGATE_KEY", setOf("xyz", "mno"))
 		// when:
-		testPreference = 4096
+		testPreference = emptySet()
 		// then:
-		assertEquals(4096, delegateActivity.readOnlyPreference)
+		assertEquals(emptySet<String>(), delegateActivity.readOnlyPreference)
 	}
 }

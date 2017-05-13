@@ -12,11 +12,11 @@ import org.junit.Before
 import org.junit.Rule
 
 @RunWith(AndroidJUnit4::class)
-class IntPreferenceDelegateInActivityTest {
+class FloatPreferenceDelegateInActivityTest {
 
 	@Rule
 	@JvmField
-	var activityRule = ActivityTestRule<IntPreferenceDelegateActivity>(IntPreferenceDelegateActivity::class.java)
+	var activityRule = ActivityTestRule<FloatPreferenceDelegateActivity>(FloatPreferenceDelegateActivity::class.java)
 
 	@Before
 	@Throws(Exception::class)
@@ -45,7 +45,7 @@ class IntPreferenceDelegateInActivityTest {
 		// when:
 		val delegateValue = delegateActivity.readOnlyPreferenceWithDefaultValue
 		// then:
-		assertEquals(1024, delegateValue)
+		assertEquals(0.0001f, delegateValue)
 	}
 
 	@Test
@@ -55,9 +55,9 @@ class IntPreferenceDelegateInActivityTest {
 		val delegateActivity = activityRule.activity
 		val preferences = PreferenceManager.getDefaultSharedPreferences(delegateActivity)
 		// when:
-		delegateActivity.writablePreference = 512
+		delegateActivity.writablePreference = 0.2f
 		// then:
-		assertEquals(512, preferences.getInt("TEST_DELEGATE_KEY", 0))
+		assertEquals(0.2f, preferences.getFloat("TEST_DELEGATE_KEY", 0f))
 	}
 
 	@Test
@@ -65,11 +65,11 @@ class IntPreferenceDelegateInActivityTest {
 	fun valueWrittenToActivityFieldShouldBeReadFromLocalDelegate() {
 		// given:
 		val delegateActivity = activityRule.activity
-		val testPreference by delegateActivity.intSharedPreference("TEST_DELEGATE_KEY", 117)
+		val testPreference by delegateActivity.floatSharedPreference("TEST_DELEGATE_KEY", 3.14f)
 		// when:
-		delegateActivity.writablePreference = 256
+		delegateActivity.writablePreference = 0.125f
 		// then:
-		assertEquals(256, testPreference)
+		assertEquals(0.125f, testPreference)
 	}
 
 	@Test
@@ -77,10 +77,10 @@ class IntPreferenceDelegateInActivityTest {
 	fun valueWrittenToLocalDelegateShouldBeReadFromActivityField() {
 		// given:
 		val delegateActivity = activityRule.activity
-		var testPreference by delegateActivity.intSharedPreference("TEST_DELEGATE_KEY", 3)
+		var testPreference by delegateActivity.floatSharedPreference("TEST_DELEGATE_KEY", 0.333f)
 		// when:
-		testPreference = 4096
+		testPreference = 0.25f
 		// then:
-		assertEquals(4096, delegateActivity.readOnlyPreference)
+		assertEquals(0.25f, delegateActivity.readOnlyPreference)
 	}
 }

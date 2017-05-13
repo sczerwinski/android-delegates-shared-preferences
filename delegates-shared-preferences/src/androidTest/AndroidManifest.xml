@@ -4,5 +4,10 @@
 	<application>
 		<activity android:name="it.czerwinski.android.delegates.sharedpreferences.StringPreferenceDelegateActivity" />
 		<activity android:name="it.czerwinski.android.delegates.sharedpreferences.IntPreferenceDelegateActivity" />
+		<activity android:name="it.czerwinski.android.delegates.sharedpreferences.LongPreferenceDelegateActivity" />
+		<activity android:name="it.czerwinski.android.delegates.sharedpreferences.FloatPreferenceDelegateActivity" />
+		<activity android:name="it.czerwinski.android.delegates.sharedpreferences.DoublePreferenceDelegateActivity" />
+		<activity android:name="it.czerwinski.android.delegates.sharedpreferences.BooleanPreferenceDelegateActivity" />
+		<activity android:name="it.czerwinski.android.delegates.sharedpreferences.StringSetPreferenceDelegateActivity" />
 	</application>
 </manifest>
