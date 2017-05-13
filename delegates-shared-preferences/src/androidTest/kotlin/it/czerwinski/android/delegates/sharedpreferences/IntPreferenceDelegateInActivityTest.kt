@@ -12,11 +12,11 @@ import org.junit.Before
 import org.junit.Rule
 
 @RunWith(AndroidJUnit4::class)
-class StringPreferenceDelegateInActivityTest {
+class IntPreferenceDelegateInActivityTest {
 
 	@Rule
 	@JvmField
-	var activityRule = ActivityTestRule<StringPreferenceDelegateActivity>(StringPreferenceDelegateActivity::class.java)
+	var activityRule = ActivityTestRule<IntPreferenceDelegateActivity>(IntPreferenceDelegateActivity::class.java)
 
 	@Before
 	@Throws(Exception::class)
@@ -45,7 +45,7 @@ class StringPreferenceDelegateInActivityTest {
 		// when:
 		val delegateValue = delegateActivity.readOnlyPreferenceWithDefaultValue
 		// then:
-		assertEquals("Default value", delegateValue)
+		assertEquals(1024, delegateValue)
 	}
 
 	@Test
@@ -55,9 +55,9 @@ class StringPreferenceDelegateInActivityTest {
 		val delegateActivity = activityRule.activity
 		val preferences = PreferenceManager.getDefaultSharedPreferences(delegateActivity)
 		// when:
-		delegateActivity.writablePreference = "New value"
+		delegateActivity.writablePreference = 512
 		// then:
-		assertEquals("New value", preferences.getString("TEST_DELEGATE_KEY", null))
+		assertEquals(512, preferences.getInt("TEST_DELEGATE_KEY", 0))
 	}
 
 	@Test
@@ -65,11 +65,11 @@ class StringPreferenceDelegateInActivityTest {
 	fun valueWrittenToActivityFieldShouldBeReadFromLocalDelegate() {
 		// given:
 		val delegateActivity = activityRule.activity
-		val testPreference by delegateActivity.stringSharedPreference("TEST_DELEGATE_KEY", "Default value")
+		val testPreference by delegateActivity.intSharedPreference("TEST_DELEGATE_KEY", 117)
 		// when:
-		delegateActivity.writablePreference = "Some value"
+		delegateActivity.writablePreference = 256
 		// then:
-		assertEquals("Some value", testPreference)
+		assertEquals(256, testPreference)
 	}
 
 	@Test
@@ -77,10 +77,10 @@ class StringPreferenceDelegateInActivityTest {
 	fun valueWrittenToLocalDelegateShouldBeReadFromActivityField() {
 		// given:
 		val delegateActivity = activityRule.activity
-		var testPreference by delegateActivity.stringSharedPreference("TEST_DELEGATE_KEY", "Default value")
+		var testPreference by delegateActivity.intSharedPreference("TEST_DELEGATE_KEY", 3)
 		// when:
-		testPreference = "Another value"
+		testPreference = 4096
 		// then:
-		assertEquals("Another value", delegateActivity.readOnlyPreference)
+		assertEquals(4096, delegateActivity.readOnlyPreference)
 	}
 }

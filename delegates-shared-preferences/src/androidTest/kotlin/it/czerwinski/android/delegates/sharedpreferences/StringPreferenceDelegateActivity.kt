@@ -6,9 +6,9 @@ import android.widget.RelativeLayout
 
 class StringPreferenceDelegateActivity : Activity() {
 
-	val readOnlyPreference by stringPreferenceDelegate("TEST_DELEGATE_KEY")
-	val readOnlyPreferenceWithDefaultValue by stringPreferenceDelegate("TEST_DELEGATE_KEY", "Default value")
-	var writablePreference by stringPreferenceDelegate("TEST_DELEGATE_KEY")
+	val readOnlyPreference by stringSharedPreference("TEST_DELEGATE_KEY")
+	val readOnlyPreferenceWithDefaultValue by stringSharedPreference("TEST_DELEGATE_KEY", "Default value")
+	var writablePreference by stringSharedPreference("TEST_DELEGATE_KEY")
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
