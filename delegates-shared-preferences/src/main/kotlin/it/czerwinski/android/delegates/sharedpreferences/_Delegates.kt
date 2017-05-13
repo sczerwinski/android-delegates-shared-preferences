@@ -62,3 +62,15 @@ fun Context.booleanSharedPreference(key: String, defaultValue: Boolean) =
 				this, key, defaultValue,
 				SharedPreferences::getBoolean,
 				SharedPreferences.Editor::putBoolean)
+
+fun Context.stringSetSharedPreference(key: String) =
+		NullableSharedPreferenceDelegate<Set<String>>(
+				this, key, emptySet<String>(),
+				SharedPreferences::getStringSet,
+				SharedPreferences.Editor::putStringSet)
+
+fun Context.stringSetSharedPreference(key: String, defaultValue: Set<String>) =
+		SharedPreferenceDelegate<Set<String>>(
+				this, key, defaultValue,
+				SharedPreferences::getStringSet,
+				SharedPreferences.Editor::putStringSet)
