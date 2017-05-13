@@ -51,6 +51,18 @@ fun Context.floatSharedPreference(key: String, defaultValue: Float) =
 				SharedPreferences::getFloat,
 				SharedPreferences.Editor::putFloat)
 
+fun Context.doubleSharedPreference(key: String) =
+		NullableSharedPreferenceDelegate<Double>(
+				this, key, 0.0,
+				SharedPreferences::getDouble,
+				SharedPreferences.Editor::putDouble)
+
+fun Context.doubleSharedPreference(key: String, defaultValue: Double) =
+		SharedPreferenceDelegate<Double>(
+				this, key, defaultValue,
+				SharedPreferences::getDouble,
+				SharedPreferences.Editor::putDouble)
+
 fun Context.booleanSharedPreference(key: String) =
 		NullableSharedPreferenceDelegate<Boolean>(
 				this, key, false,
