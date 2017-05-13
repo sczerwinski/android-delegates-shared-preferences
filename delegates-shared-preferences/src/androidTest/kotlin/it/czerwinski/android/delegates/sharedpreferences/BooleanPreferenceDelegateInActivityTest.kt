@@ -34,7 +34,7 @@ class BooleanPreferenceDelegateInActivityTest {
 		// when:
 		val delegateValue = delegateActivity.readOnlyPreference
 		// then:
-		assertEquals(null, delegateValue)
+		assertNull(delegateValue)
 	}
 
 	@Test

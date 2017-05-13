@@ -34,7 +34,7 @@ class StringSetPreferenceDelegateInActivityTest {
 		// when:
 		val delegateValue = delegateActivity.readOnlyPreference
 		// then:
-		assertEquals(null, delegateValue)
+		assertNull(delegateValue)
 	}
 
 	@Test

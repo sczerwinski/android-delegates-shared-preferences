@@ -29,7 +29,7 @@ class LongPreferenceDelegateTest {
 		// when:
 		val testPreference by context.longSharedPreference("TEST_DELEGATE_KEY")
 		// then:
-		assertEquals(null, testPreference)
+		assertNull(testPreference)
 	}
 
 	@Test

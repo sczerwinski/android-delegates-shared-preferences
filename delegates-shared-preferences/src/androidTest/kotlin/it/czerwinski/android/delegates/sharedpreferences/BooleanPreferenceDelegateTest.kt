@@ -29,7 +29,7 @@ class BooleanPreferenceDelegateTest {
 		// when:
 		val testPreference by context.booleanSharedPreference("TEST_DELEGATE_KEY")
 		// then:
-		assertEquals(null, testPreference)
+		assertNull(testPreference)
 	}
 
 	@Test

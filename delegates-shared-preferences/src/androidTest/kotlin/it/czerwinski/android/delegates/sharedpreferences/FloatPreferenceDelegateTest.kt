@@ -29,7 +29,7 @@ class FloatPreferenceDelegateTest {
 		// when:
 		val testPreference by context.floatSharedPreference("TEST_DELEGATE_KEY")
 		// then:
-		assertEquals(null, testPreference)
+		assertNull(testPreference)
 	}
 
 	@Test

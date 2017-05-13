@@ -29,7 +29,7 @@ class DoublePreferenceDelegateTest {
 		// when:
 		val testPreference by context.doubleSharedPreference("TEST_DELEGATE_KEY")
 		// then:
-		assertEquals(null, testPreference)
+		assertNull(testPreference)
 	}
 
 	@Test

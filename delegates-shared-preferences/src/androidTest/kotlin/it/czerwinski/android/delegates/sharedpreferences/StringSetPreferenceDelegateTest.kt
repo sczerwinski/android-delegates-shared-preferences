@@ -29,7 +29,7 @@ class StringSetPreferenceDelegateTest {
 		// when:
 		val testPreference by context.stringSetSharedPreference("TEST_DELEGATE_KEY")
 		// then:
-		assertEquals(null, testPreference)
+		assertNull(testPreference)
 	}
 
 	@Test
