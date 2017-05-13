@@ -99,6 +99,22 @@ class StringPreferenceDelegateTest {
 
 	@Test
 	@Throws(Exception::class)
+	fun delegateShouldRemovePreferenceIfSetToNull() {
+		// given:
+		val context = InstrumentationRegistry.getTargetContext()
+		val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+		preferences.edit()
+				.putString("TEST_DELEGATE_KEY", "Initial value")
+				.apply()
+		var testPreference by context.stringPreferenceDelegate("TEST_DELEGATE_KEY")
+		// when:
+		testPreference = null
+		// then:
+		assertFalse(preferences.contains("TEST_DELEGATE_KEY"))
+	}
+
+	@Test
+	@Throws(Exception::class)
 	fun delegateWithDefaultValueShouldSetAssignedPreferenceValue() {
 		// given:
 		val context = InstrumentationRegistry.getTargetContext()
