@@ -5,5 +5,6 @@
 		<activity android:name="it.czerwinski.android.delegates.sharedpreferences.StringPreferenceDelegateActivity" />
 		<activity android:name="it.czerwinski.android.delegates.sharedpreferences.IntPreferenceDelegateActivity" />
 		<activity android:name="it.czerwinski.android.delegates.sharedpreferences.LongPreferenceDelegateActivity" />
+		<activity android:name="it.czerwinski.android.delegates.sharedpreferences.FloatPreferenceDelegateActivity" />
 	</application>
 </manifest>

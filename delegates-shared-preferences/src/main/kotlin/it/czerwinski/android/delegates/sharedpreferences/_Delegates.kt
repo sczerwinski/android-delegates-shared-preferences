@@ -38,3 +38,15 @@ fun Context.longSharedPreference(key: String, defaultValue: Long) =
 				this, key, defaultValue,
 				SharedPreferences::getLong,
 				SharedPreferences.Editor::putLong)
+
+fun Context.floatSharedPreference(key: String) =
+		NullableSharedPreferenceDelegate<Float>(
+				this, key, 0f,
+				SharedPreferences::getFloat,
+				SharedPreferences.Editor::putFloat)
+
+fun Context.floatSharedPreference(key: String, defaultValue: Float) =
+		SharedPreferenceDelegate<Float>(
+				this, key, defaultValue,
+				SharedPreferences::getFloat,
+				SharedPreferences.Editor::putFloat)
